@@ -35,8 +35,9 @@ class Render:
         # setting up a number of screenshots taken by finding the amount of screenshots in the Screenshots folder
         self.ss_number = 0
         for file in os.listdir('../Screenshots'):
-            if os.path.isfile(os.path.join('../Screenshots', file)):
-                self.ss_number += 1
+            if file.endswith('.png'):
+                if os.path.isfile(os.path.join('../Screenshots', file)):
+                    self.ss_number += 1
 
     def update_camera(self, player):
         # update camera position based on player position
