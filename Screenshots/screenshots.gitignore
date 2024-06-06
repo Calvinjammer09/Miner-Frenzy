@@ -1,2 +1,4 @@
-*
-!.gitignore
+Screenshots/*
+
+# exception to the rule
+!Screenshots/.gitkeep 
