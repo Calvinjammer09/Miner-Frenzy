@@ -1,11 +1,13 @@
 import pygame
+import os
+import time
+
 pygame.display.init()
 
-import os
-
-import player
+from player import player_group, player, projectiles
+from enemy import enemies, Mushroom
+from background import Background, tiles
 from rock import rock_group
-import enemy
 
 class Render:
     def __init__(self):
@@ -39,6 +41,11 @@ class Render:
                 if os.path.isfile(os.path.join('../Screenshots', file)):
                     self.ss_number += 1
 
+        self.background = Background()
+
+        self.last_loaded_tile = 0
+        self.loaded_tiles = self.background.tiles
+
     def update_camera(self, player):
         # update camera position based on player position
         self.camera_x = player.rect.centerx - self.camera_width // 2
@@ -54,37 +61,38 @@ class Render:
             pygame.image.save(win, '../Screenshots/' + 'Screenshot ' + str(self.ss_number) + '.png')
 
     def restart(self):
-        player.player_group.sprites()[0].lives = 5
+        player_group.sprites()[0].lives = 5
 
-        enemy.enemies.empty()
+        enemies.empty()
 
-        new_mush = enemy.Mushroom()
+        new_mush = Mushroom()
         new_mush.spawn
-        enemy.enemies.add(new_mush)
+        enemies.add(new_mush)
         
     def redraw(self, window, color):
 
         # run the player and enemy move method to update the positions of the entities
-        player.player_group.update()
-        enemy.enemies.update()
-        player.projectiles.update()
+        player_group.update()
+        enemies.update()
+        projectiles.update()
+        tiles.update()
         
         # update camera position and set fps to 60
         self.clock.tick(60)
-        self.update_camera(player.player_group.sprites()[0])
+        self.update_camera(player_group.sprites()[0])
 
         # fill screen with background color
         window.fill(color)
 
         # render all sprites
-        for sprite in player.player_group.sprites() + rock_group.sprites() + enemy.enemies.sprites() + player.projectiles.sprites():
+        for sprite in player_group.sprites() + rock_group.sprites() + enemies.sprites() + projectiles.sprites():
             if sprite.rect.x - self.camera_x > self.camera_width or sprite.rect.x - self.camera_x < -sprite.size or sprite.rect.y - self.camera_y > self.camera_height or sprite.rect.y - self.camera_y < -sprite.size:
                 pass
             else:
                 window.blit(sprite.image, (sprite.rect.x - self.camera_x, sprite.rect.y - self.camera_y))
 
         lives_offset = 0
-        for hearts in range(player.player_group.sprites()[0].lives):
+        for hearts in range(player_group.sprites()[0].lives):
             window.blit(self.heart_sprite, (lives_offset, 0))
             lives_offset += 48
 
@@ -93,5 +101,14 @@ class Render:
             rounded_fps = str(round(self.clock.get_fps(), 2))
             fps_text = self.font.render(rounded_fps, True, (255, 255, 255))
             window.blit(fps_text, (0, 0))
+
+        # if time.time() - self.last_loaded_tile >= 2:
+        #     self.last_loaded_tile = time.time()
+        #     self.loaded_tile = self.background.load_tile()
+
+        #tile_offset = 0
+        #for frame in self.loaded_tiles:
+        #    window.blit(frame, (player.rect.centerx - self.camera_x + tile_offset, player.rect.centery - self.camera_y))
+        #    tile_offset += 16 * 5
         
         pygame.display.update()

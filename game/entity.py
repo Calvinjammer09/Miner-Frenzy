@@ -11,8 +11,8 @@ class BaseEntity(pygame.sprite.Sprite):
         # create frames of animations if needed
         self.frame_list = []
         for frame in range(frames):
-            self.temp_frame = self.make_sprite(frame, width, height, scale)
-            self.frame_list.append(self.temp_frame)
+            temp_frame = self.make_sprite(frame, width, height, scale)
+            self.frame_list.append(temp_frame)
 
         self.rect = self.frame_list[0].get_rect()
         self.rect.x = x

@@ -12,10 +12,6 @@ class BaseEnemy(BaseEntity):
         self.frame = 0
         self.health = health
 
-        # self.hit_time = 0
-        # self.alpha = 255
-        # self.alpha_bool = False
-
         # setting movement speed
         self.speed = speed
 
@@ -38,8 +34,6 @@ class BaseEnemy(BaseEntity):
         # using the tuples pick a random value in the random
         self.rect.x = random.randint(side_x[0], side_x[1])
         self.rect.y = random.randint(side_y[0], side_y[1])
-
-        print(self.rect.y, self.rect.x)
 
         enemies.add(self)
 

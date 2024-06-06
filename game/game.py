@@ -51,6 +51,8 @@ def main():
 
     wave = 1
 
+    last_shot = 0
+
     mush_spawn_1 = 1
     mush_spawn_2 = 3
 
@@ -67,12 +69,13 @@ def main():
         
         mush_spawn_time -= mushspawnr / 60
 
+        if pygame.mouse.get_pressed()[0] and time.time() - last_shot >= 0.2:
+            last_shot = time.time()
+            player.player.shoot(render.camera_x, render.camera_y)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if pygame.mouse.get_pressed()[0]:
-                    player.player.shoot(render.camera_x, render.camera_y)
 
             # check for key presses to toggle fps display or screenshot
             if event.type == pygame.KEYDOWN:
@@ -87,9 +90,9 @@ def main():
             elif wave > 10 and wave < 13:
                 mushspawnr += 1
             elif wave == 30:
-                mushspawnr *= 2
+                mushspawnr += 2
             elif wave == 50:
-                mushspawnr *= 2 
+                mushspawnr += 2 
 
             mush_spawn_time = random.randint(mush_spawn_1, mush_spawn_2)
 
@@ -107,4 +110,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    print('done')
