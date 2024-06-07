@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7pdced6p1byi"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_6fk1t"]
+[ext_resource type="Texture2D" uid="uid://bwqwlyy6jpfgn" path="res://Assets/miner_walk_cycle.png" id="2_twc6j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crrl0"]
+radius = 6.0
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60rt3"]
+atlas = ExtResource("2_twc6j")
+region = Rect2(13, 0, 13, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsqh1"]
+atlas = ExtResource("2_twc6j")
+region = Rect2(0, 0, 13, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7begm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60rt3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60rt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsqh1")
+}],
+"loop": true,
+"name": &"run",
+"speed": 30.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(11.5448, 11.5836)
+script = ExtResource("1_6fk1t")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_crrl0")
+
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_7begm")
+animation = &"run"
+autoplay = "idle"

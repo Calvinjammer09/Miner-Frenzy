@@ -3,7 +3,7 @@
 
 ## Miner Frenzy is a game where you play as a miner who got stuck in the underground and must kill enemies to get out.  
 
-### To initialize the python venv, run these commands:  
+## To initialize the python venv, run these commands:  
 
 cd game  
 python3 -m venv env  
@@ -21,4 +21,6 @@ On Linux, use "mv game". On MacOS or Windows, use "cd game", then type "python g
 
 If you wish to run the game but don't want to make a virtual environment or edit the code, go to your OS's respective folder and download that instead.  
 
-### NOTE: These releases will be behind the python code, as I only want to release when I am sure I have a new version of the game. Do not expect the same thing as the python version to come out of those versions.
+### NOTE:   
+These releases will be behind the python code, as I only want to release when I am sure I have a good and new version of the game.   
+Do not expect the same thing as the python version to come out of those versions. I will also not be releasing the Mac versions and Linux versions as often.   

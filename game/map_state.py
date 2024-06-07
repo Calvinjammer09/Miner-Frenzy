@@ -85,12 +85,18 @@ class Render:
         # fill screen with background color
         window.fill(color)
 
+        tiles_loaded = 0
+
         # render all sprites
-        for sprite in player_group.sprites() + rock_group.sprites() + enemies.sprites() + projectiles.sprites():
+        for sprite in tiles.sprites() + player_group.sprites() + rock_group.sprites() + enemies.sprites() + projectiles.sprites():
             if sprite.rect.x - self.camera_x > self.camera_width or sprite.rect.x - self.camera_x < -sprite.size or sprite.rect.y - self.camera_y > self.camera_height or sprite.rect.y - self.camera_y < -sprite.size:
                 pass
             else:
                 window.blit(sprite.image, (sprite.rect.x - self.camera_x, sprite.rect.y - self.camera_y))
+                if sprite in tiles:
+                    tiles_loaded += 1
+
+        print('tiles blitted:', tiles_loaded, 'screen size:', self.camera_width, self.camera_height)
 
         lives_offset = 0
         for hearts in range(player_group.sprites()[0].lives):
