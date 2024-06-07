@@ -64,9 +64,10 @@ class Render:
         player_group.sprites()[0].lives = 5
 
         enemies.empty()
+        projectiles.empty()
 
         new_mush = Mushroom()
-        new_mush.spawn
+        new_mush.spawn(self.camera_x, self.camera_y)
         enemies.add(new_mush)
         
     def redraw(self, window, color):
