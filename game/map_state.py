@@ -44,7 +44,7 @@ class Render:
         self.background = Background()
 
         self.last_loaded_tile = 0
-        self.loaded_tiles = self.background.tiles
+        self.loaded_tiles = self.background.load_tile()
 
     def update_camera(self, player):
         # update camera position based on player position
@@ -102,13 +102,10 @@ class Render:
             fps_text = self.font.render(rounded_fps, True, (255, 255, 255))
             window.blit(fps_text, (0, 0))
 
-        # if time.time() - self.last_loaded_tile >= 2:
-        #     self.last_loaded_tile = time.time()
-        #     self.loaded_tile = self.background.load_tile()
+        if time.time() - self.last_loaded_tile >= 2:
+            self.last_loaded_tile = time.time()
+            self.loaded_tile = self.background.load_tile()
 
-        #tile_offset = 0
-        #for frame in self.loaded_tiles:
-        #    window.blit(frame, (player.rect.centerx - self.camera_x + tile_offset, player.rect.centery - self.camera_y))
-        #    tile_offset += 16 * 5
+        window.blit(self.loaded_tile, (player.rect.centerx - self.camera_x, player.rect.centery - self.camera_y))
         
         pygame.display.update()

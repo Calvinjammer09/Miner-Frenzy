@@ -13,8 +13,11 @@ class Background(pygame.sprite.Sprite):
         self.tiles = []
 
         for frame in range(4):
-            image = pygame.Surface((16 * frame + 1, 16), pygame.SRCALPHA).convert_alpha()
-            image.blit(self.tileset, (0, 0))
+
+            # create a surface with an alpha channel
+            image = pygame.Surface((16, 16), pygame.SRCALPHA).convert_alpha()
+            source_rect = pygame.Rect(frame * 16, 0, 16, 16)
+            image.blit(self.tileset, (0, 0), source_rect)
             image = pygame.transform.scale(image, (16 * 5, 16 * 5))
             self.tiles.append(image)
 

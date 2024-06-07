@@ -49,15 +49,16 @@ def dead(win):
 def main():
     run = True
 
-    wave = 1
+    pygame.RESIZABLE = True
 
     last_shot = 0
 
+    # active_event_checks = 0
+
     mush_spawn_1 = 1
     mush_spawn_2 = 3
-
+    wave = 1
     mushspawnr = 1
-
     mush_spawn_time = random.randint(mush_spawn_1, mush_spawn_2)
 
     # run the game loop
@@ -83,6 +84,19 @@ def main():
 
                 if event.key == pygame.K_ESCAPE:
                     run = False
+            
+            # if event.type == pygame.ACTIVEEVENT:
+            #     active_event_checks += 1
+            #     print(active_event_checks)
+            #     while active_event_checks >= 4:
+            #         for event in pygame.event.get():
+            #             if event.type == pygame.ACTIVEEVENT:
+            #                 active_event_checks = 0
+            #                 print('activeevent', active_event_checks)
+            #                 break
+
+            #         if not active_event_checks:
+            #             break
 
         if mush_spawn_time <= 0:
             if wave == 5:

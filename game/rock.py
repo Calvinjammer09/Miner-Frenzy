@@ -11,4 +11,4 @@ class Rock(BaseEntity):
         self.rect.x = random.randint(500, 2000)
         self.rect.y = random.randint(500, 2000)
 
-rock_group = pygame.sprite.Group([Rock() for _ in range(50)])
+rock_group = pygame.sprite.Group()#[Rock() for _ in range(50)])
