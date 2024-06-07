@@ -103,10 +103,10 @@ class Render:
             fps_text = self.font.render(rounded_fps, True, (255, 255, 255))
             window.blit(fps_text, (0, 0))
 
-        if time.time() - self.last_loaded_tile >= 2:
-            self.last_loaded_tile = time.time()
-            self.loaded_tile = self.background.load_tile()
+        # if time.time() - self.last_loaded_tile >= 2:
+        #     self.last_loaded_tile = time.time()
+        #     self.loaded_tile = self.background.load_tile()
 
-        window.blit(self.loaded_tile, (player.rect.centerx - self.camera_x, player.rect.centery - self.camera_y))
+        # window.blit(self.loaded_tile, (player.rect.centerx - self.camera_x, player.rect.centery - self.camera_y))
         
         pygame.display.update()
