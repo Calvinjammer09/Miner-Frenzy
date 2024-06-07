@@ -1,1 +1,1 @@
-This folder is where screenshots taken will go.
+## This folder is where screenshots taken will go.
