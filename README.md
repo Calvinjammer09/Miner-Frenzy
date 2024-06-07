@@ -15,4 +15,4 @@ pip install -r requirements.txt
 python game.py
 
 If you get the error "can't open file 'path_to_miner_frenzy/Miner-Frenzy/game.py': [Errno 2] No such file or directory", your terminal is in the wrong folder and you need to go into the "game" folder.  
-On Linux, use "mv game". On MacOS or Windows, use "cd game".
+On Linux, use "mv game". On MacOS or Windows, use "cd game", then type "python game.py" to run.
