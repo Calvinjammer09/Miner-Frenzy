@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5aobpf2cmpqo"]
+
+[ext_resource type="PackedScene" uid="uid://c7pdced6p1byi" path="res://player.tscn" id="1_n8lf5"]
+[ext_resource type="Script" path="res://Camera.gd" id="2_s26vs"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_n8lf5")]
+scale = Vector2(4.7848, 5.22436)
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("2_s26vs")

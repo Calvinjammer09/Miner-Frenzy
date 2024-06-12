@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://6hh1lew4a0vl"]
+
+[ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_hy1c4"]
+[ext_resource type="Texture2D" uid="uid://ccabg8hw1wqsv" path="res://Assets/mushroom_man.png" id="2_yntpv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vxcl"]
+atlas = ExtResource("2_yntpv")
+region = Rect2(0, 0, 21, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb76q"]
+atlas = ExtResource("2_yntpv")
+region = Rect2(21, 0, 21, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fo42f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vxcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb76q")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ffbcm"]
+radius = 7.0
+height = 22.0
+
+[node name="Enemy" type="CharacterBody2D"]
+position = Vector2(1323, 651)
+scale = Vector2(5, 5)
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_hy1c4")
+
+[node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fo42f")
+animation = &"move"
+
+[node name="EnemyArea" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="EnemyHitbox" type="CollisionShape2D" parent="EnemyArea"]
+shape = SubResource("CapsuleShape2D_ffbcm")
+
+[node name="EnemyHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ffbcm")

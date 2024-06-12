@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://dciux7t317if6"]
+
+[ext_resource type="Script" path="res://Scenes/enemy_spawner.gd" id="1_vlbjp"]
+[ext_resource type="PackedScene" uid="uid://6hh1lew4a0vl" path="res://Scenes/enemy.tscn" id="2_un1cv"]
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_vlbjp")
+enemy_scene = ExtResource("2_un1cv")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(2738, 135)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(2743, 699)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(2740, 1313)
+
+[node name="Marker2D4" type="Marker2D" parent="."]
+position = Vector2(2338, 1582)
+
+[node name="Marker2D5" type="Marker2D" parent="."]
+position = Vector2(1349, 1588)
+
+[node name="Marker2D6" type="Marker2D" parent="."]
+position = Vector2(319, 1594)
+
+[node name="Marker2D7" type="Marker2D" parent="."]
+position = Vector2(-142, 1334)
+
+[node name="Marker2D8" type="Marker2D" parent="."]
+position = Vector2(-150, 691)
+
+[node name="Marker2D9" type="Marker2D" parent="."]
+position = Vector2(-163, 87)
+
+[node name="Marker2D10" type="Marker2D" parent="."]
+position = Vector2(2412, -131)
+
+[node name="Marker2D11" type="Marker2D" parent="."]
+position = Vector2(1279, -131)
+
+[node name="Marker2D12" type="Marker2D" parent="."]
+position = Vector2(170, -140)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

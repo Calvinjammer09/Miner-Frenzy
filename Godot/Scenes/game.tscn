@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5aobpf2cmpqo"]
+
+[ext_resource type="PackedScene" uid="uid://c7pdced6p1byi" path="res://Scenes/player.tscn" id="1_n8lf5"]
+[ext_resource type="Script" path="res://Scenes/Camera.gd" id="2_s26vs"]
+[ext_resource type="Script" path="res://Scenes/Bullets.gd" id="2_u2jhc"]
+[ext_resource type="PackedScene" uid="uid://b86khb7fhabu" path="res://Scenes/bullet.tscn" id="3_jc5mq"]
+[ext_resource type="PackedScene" uid="uid://bobnmsoacbsaj" path="res://Scenes/end.tscn" id="6_cy5ug"]
+[ext_resource type="PackedScene" uid="uid://dciux7t317if6" path="res://Scenes/enemy_spawner.tscn" id="6_vlo5v"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera" type="Camera2D" parent="."]
+scale = Vector2(5.63288, 0.24102)
+script = ExtResource("2_s26vs")
+
+[node name="Player" parent="." groups=["players"] instance=ExtResource("1_n8lf5")]
+position = Vector2(0, 0)
+scale = Vector2(4.7848, 5.22436)
+
+[node name="Bullets" type="Node2D" parent="."]
+script = ExtResource("2_u2jhc")
+bullet_scene = ExtResource("3_jc5mq")
+
+[node name="EnemySpawner" parent="." instance=ExtResource("6_vlo5v")]
+position = Vector2(-1281, -718)
+
+[node name="End" parent="." instance=ExtResource("6_cy5ug")]
+
+[connection signal="dead" from="Player" to="Camera" method="_on_player_dead"]
+[connection signal="dead" from="Player" to="End" method="_on_player_dead"]
+[connection signal="shoot" from="Player" to="Bullets" method="_on_player_shoot"]
